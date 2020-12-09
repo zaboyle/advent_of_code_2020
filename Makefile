@@ -14,7 +14,7 @@ release: all
 debug: CXXFLAGS += -g3 -DDEBUG
 debug: clean all
 
-all: day1 day2
+all: day1 day2 day3
 
 day1:
 	$(CXX) $(CXXFLAGS) day1.cpp -o day1
@@ -22,5 +22,8 @@ day1:
 day2:
 	go build -o day2 day2.go
 
+day3:
+	go build -o day3 day3.go
+
 clean:
-	rm -rf day1 day2
+	rm -rf day1 day2 day3
