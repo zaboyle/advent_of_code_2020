@@ -4,7 +4,6 @@ import(
 	"fmt"
 	"os"
 	"io"
-	"bufio"
 	"log"
 )
 
@@ -37,9 +36,7 @@ func readTerrain(r io.Reader) ([]string, int, int) {
 	return terrain, len(terrain[0]), len(terrain)
 }
 
-func pt1(terrain []string, width int, height int, step_width int, step_height int) {
-	// printTerrain(terrain)
-	// fmt.Printf("width: %d, height: %d\n", width, height)
+func checkPath(terrain []string, width int, height int, step_width int, step_height int) {
 	treeCount := 0
 
 	// x is vertical axis
@@ -47,8 +44,6 @@ func pt1(terrain []string, width int, height int, step_width int, step_height in
 	x := 0
 	y := 0
 	for x < height {
-
-		// fmt.Printf("x: %d, y: %d, c: %c\n", x, y, terrain[x][y])
 		if terrain[x][y] == '#' {
 			treeCount += 1
 		}
@@ -62,21 +57,13 @@ func pt1(terrain []string, width int, height int, step_width int, step_height in
 }
 
 func main() {
-	filename  := os.Args[1]
-	file, err := os.Open(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-	r := bufio.NewReader(file);
+	r := getFileReader(os.Args[1])
 
 	terrain, width, height := readTerrain(r)
-	pt1(terrain, width, height, 1, 1)
-	pt1(terrain, width, height, 3, 1)
-	pt1(terrain, width, height, 5, 1)
-	pt1(terrain, width, height, 7, 1)
-	pt1(terrain, width, height, 1, 2)
-	file.Seek(0, 0)
-	// pt2(r)
+	checkPath(terrain, width, height, 1, 1)
+	checkPath(terrain, width, height, 3, 1)
+	checkPath(terrain, width, height, 5, 1)
+	checkPath(terrain, width, height, 7, 1)
+	checkPath(terrain, width, height, 1, 2)
 
-	file.Close()
 }

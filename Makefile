@@ -23,7 +23,13 @@ day2:
 	go build -o day2 day2.go
 
 day3:
-	go build -o day3 day3.go
+	go build -o day3 day3.go utils.go
+
+day4:
+	go build -o day4 day4.go utils.go
+
+day5:
+	go build -o day5 day5.go utils.go
 
 clean:
-	rm -rf day1 day2 day3
+	rm -rf day1 day2 day3 day4 day5
